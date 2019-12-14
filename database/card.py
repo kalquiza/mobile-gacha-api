@@ -36,7 +36,7 @@ class Card(db.Model):
 
     '''
     info()
-        info of the character model
+        info of the card model
     '''
     def info(self):
         return {
