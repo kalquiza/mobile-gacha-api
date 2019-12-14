@@ -62,3 +62,42 @@ class CharacterSimple(Resource):
 
         except Exception as e:
             abort(422)
+
+
+""" Error Handling """
+
+"""
+Error handling for unprocessable entity
+"""
+@app.errorhandler(422)
+def unprocessable(error):
+    return jsonify({
+        "success": False,
+        "error": 422,
+        "message": "Unprocessable"
+    }), 422
+
+
+"""
+Error handler for the requested resource could not be found
+"""
+@app.errorhandler(404)
+def not_found(error):
+    return jsonify({
+        "success": False,
+        "error": 404,
+        "message": "Resource not found"
+    }), 404
+
+
+"""
+Error handler for when authentication is required and has failed or has not
+yet been provided
+"""
+@app.errorhandler(401)
+def unauthorized(error):
+    return jsonify({
+        "success": False,
+        "error": 401,
+        "message": "Unauthorized"
+    }), 401
