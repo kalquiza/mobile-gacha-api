@@ -42,8 +42,8 @@ class Character(db.Model):
     def profile(self):
         return {
             'id': self.id,
-            'name': self.character_name,
-            'character_type': self.character_type,
+            'name': self.name,
+            'class_type': self.class_type,
             'age': self.age,
             'weight': self.weight,
             'height': self.height,
@@ -52,7 +52,6 @@ class Character(db.Model):
             'handedness': self.handedness,
             'hobbies': self.hobbies,
             'astrological_sign': self.astrological_sign,
-            'class_type': self.class_type
         }
 
     '''
