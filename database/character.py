@@ -16,7 +16,7 @@ class Character(db.Model):
     # Name
     name = db.Column(String(120), unique=True)
     # Class Type
-    class_type = relationship("Type", secondary=character_type)
+    class_type = db.Column(String(120))
     # Age
     age = db.Column(db.Integer)
     # Weight in kg
