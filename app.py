@@ -4,9 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
 from database import db_drop_and_create_all, setup_db
-from character import Character
-from card import Card
-from skill import Skill
 
 
 def create_app(test_config=None):

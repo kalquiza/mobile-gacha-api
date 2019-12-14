@@ -3,9 +3,6 @@ from sqlalchemy import Column, String, Integer
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import json
-from character import Character
-from card import Card
-from skill import Skill
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_path = 'postgres:///unamedidolapp'
@@ -23,6 +20,12 @@ def setup_db(app):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     migrate = Migrate(app, db)
+
+    # import models
+    from character import Character
+    from card import Card
+    from skill import Skill
+
     db.init_app(app)
 
 
