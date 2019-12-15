@@ -22,9 +22,9 @@ def setup_db(app):
     migrate = Migrate(app, db)
 
     # import models
-    from character import Character
-    from card import Card
-    from skill import Skill
+    from .character import Character
+    from .card import Card
+    from .skill import Skill
 
     db.init_app(app)
 

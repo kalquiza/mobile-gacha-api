@@ -4,11 +4,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_restful import Resource, Api
-from database import db_drop_and_create_all, setup_db
-from auth import AuthError, requires_auth
-from character import Character
-from card import Card
-from skill import Skill
+from auth.auth import AuthError, requires_auth
+from database.database import db_drop_and_create_all, setup_db
+from database.character import Character
+from database.card import Card
+from database.skill import Skill
 
 
 app = Flask(__name__)

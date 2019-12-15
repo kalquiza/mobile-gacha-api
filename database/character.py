@@ -2,7 +2,7 @@ import os
 from sqlalchemy import Column, String, Integer
 from flask_sqlalchemy import SQLAlchemy
 import json
-from database import db
+from .database import db
 
 '''
 Character
