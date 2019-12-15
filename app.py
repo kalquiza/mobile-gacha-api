@@ -456,9 +456,197 @@ def delete_card(jwt, card_id):
         abort(422)
 
 
+# Skills
+# ----------------------------------------------------------------------------#
+@app.route('/skills', methods=['GET'])
+@requires_auth('get:skills')
+def get_skills(jwt):
+    """GET /skills
+
+    A public endpoint that retrieves the list of skills. Requires the
+    'get:skills' permission.
+
+    Args:
+        jwt: a json web token (string).
+
+    Returns:
+        A status code 200 and json {"success": True, "skills":
+        skills} where skills is the list of skills in the
+        skills.info() representation or appropriate status code
+        indicating reason for failure.
+    """
+    selection = Skill.query.order_by(Skill.id).all()
+    skills = [skill.info() for skill in selection]
+
+    response = jsonify({
+        'success': True,
+        'skill': skills
+    })
+    response.status_code = 200
+    return response
+
+
+@app.route('/skills/<int:skill_id>', methods=['GET'])
+@requires_auth('get:skill')
+def get_skill(jwt, skill_id):
+    """GET /skills/<id>
+
+    A public endpoint that retrieves the skill for the corresponding
+    row for <id>. Requires the 'get:skill' permission.
+
+    Args:
+        jwt: a json web token (string).
+        skill_id: where <skill_id> is the existing model id (int).
+
+    Returns:
+        A status code 200 and json {"success": True, "skill":
+        skill} where skill is the skill in the
+        skill.info() representation or appropriate status code
+        indicating reason for failure.
+    """
+    skill = Skill.query.filter(
+        Skill.id == skill_id).one_or_none()
+
+    response = jsonify({
+        'success': True,
+        'skill': [skill.info()]
+    })
+    response.status_code = 200
+    return response
+
+
+@app.route('/skills', methods=['POST'])
+@requires_auth('post:skill')
+def create_skill(jwt):
+    """POST /skills
+
+    An endpoint that creates a new row in the skills table. Requires
+    the 'post:skill' permission.
+
+    Args:
+        jwt: a json web token (string).
+        skill_id: where <skill_id> is the existing model id (int).
+
+    Returns:
+        A status code 200 and json {"success": True, "skill":
+        skill} where skill is an array containing only the newly
+        created skill in the skill.info() representation or
+        appropriate status code indicating reason for failure.
+    """
+    try:
+        body = request.get_json()
+        name = body.get('name', None)
+        type_bonus = body.get('type_bonus', None)
+        stat_bonus = body.get('stat_bonus', None)
+        multiplier = body.get('multiplier', None)
+
+        skill = Skill(
+            name=name,
+            type_bonus=type_bonus,
+            stat_bonus=stat_bonus,
+            multiplier=multiplier
+        )
+        skill.insert()
+
+        response = jsonify({
+            'success': True,
+            'skill': [skill.info()]
+        })
+        response.status_code = 200
+        return response
+
+    except Exception as e:
+        abort(422)
+
+
+@app.route('/skills/<int:skill_id>', methods=['PATCH'])
+@requires_auth('patch:skill')
+def update_skill(jwt, skill_id):
+    """PATCH /skills/<id>
+
+    An endpoint that updates the corresponding row for <id>. Requires the
+    'patch:skill' permission.
+
+    Args:
+        jwt: a json web token (string).
+        skill_id: where <skill_id> is the existing model id (int).
+
+    Returns:
+        A status code 200 and json {"success": True, "skill":
+        skill} where skill is an array containing only the updated
+        skill in the skill.info() representation or appropriate
+        status code indicating reason for failure.
+    """
+    try:
+        skill = Skill.query.filter(
+            Skill.id == skill_id).one_or_none()
+
+        if skill is None:
+            abort(404)
+
+        body = request.get_json()
+        name = body.get('name', None)
+        type_bonus = body.get('type_bonus', None)
+        stat_bonus = body.get('stat_bonus', None)
+        multiplier = body.get('multiplier', None)
+
+        skill = Skill(
+            name=name,
+            type_bonus=type_bonus,
+            stat_bonus=stat_bonus,
+            multiplier=multiplier
+        )
+        skill.update()
+
+        return jsonify({
+            'success': True,
+            'skill': [skill.info()]
+        }), 200
+
+    except Exception as e:
+        abort(422)
+
+
+@app.route('/skills/<int:skill_id>', methods=['DELETE'])
+@requires_auth('delete:skill')
+def delete_skill(jwt, skill_id):
+    """
+        DELETE /skills/<id>:
+            An endpoint that deletes the corresponding row for <id>.
+            Requires the 'delete:skill' permission.
+
+        Args:
+            jwt: a json web token (string).
+            skill_id: where <skill_id> is the existing model id
+            (int).
+
+        Returns:
+            A status code 200 and json {"success": True, "delete": id}
+            where id is the id of the deleted record or appropriate status
+            code indicating reason for failure.
+    """
+    try:
+        skill = Skill.query.filter(
+            Skill.id == skill).one_or_none()
+
+        if skill is None:
+            abort(404)
+
+        id = skill.id
+        skill.delete()
+
+        return jsonify({
+            'success': True,
+            'delete': id
+        }), 200
+
+    except Exception as e:
+        abort(422)
+
 # ----------------------------------------------------------------------------#
 # Error Handling
 # ----------------------------------------------------------------------------#
+
 
 """
 Error handling for unprocessable entity
