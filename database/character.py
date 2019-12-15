@@ -15,25 +15,27 @@ class Character(db.Model):
     # Autoincrementing, unique primary key
     id = db.Column(db.Integer, primary_key=True)
     # Name
-    name = db.Column(String(120), unique=True)
-    # Class Type
-    class_type = db.Column(String(120))
+    name = db.Column(String(80), unique=True)
     # Age
-    age = db.Column(db.Integer)
-    # Weight in kg
-    weight = db.Column(db.Integer)
+    age = db.Column(String(80))
     # Height in cm
-    height = db.Column(db.Integer)
-    # Blood Type
-    bloodtype = db.Column(String(120))
-    # Three Sizes
-    three_sizes = db.Column(String(120))
-    # Handedness
-    handedness = db.Column(String(120))
-    # Hobbies
-    hobbies = db.Column(db.String(120))
+    height = db.Column(String(80))
+    # Weight in kg
+    weight = db.Column(String(80))
+    # Birthday
+    birthday = db.Column(String(80))
     # Astrological Sign
-    astrological_sign = db.Column(db.String(120))
+    astrological_sign = db.Column(db.String(80))
+    # Blood Type
+    bloodtype = db.Column(String(80))
+    # Three Sizes
+    three_sizes = db.Column(String(80))
+    # Handedness
+    handedness = db.Column(String(80))
+    # Hobbies
+    hobbies = db.Column(db.String(80))
+    # Class Type
+    class_type = db.Column(String(80))
 
     '''
     profile()
@@ -43,15 +45,16 @@ class Character(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'class_type': self.class_type,
             'age': self.age,
-            'weight': self.weight,
             'height': self.height,
+            'weight': self.weight,
+            'birthday': self.birthday,
+            'astrological_sign': self.astrological_sign,
             'bloodtype': self.bloodtype,
             'three_sizes': self.three_sizes,
             'handedness': self.handedness,
             'hobbies': self.hobbies,
-            'astrological_sign': self.astrological_sign,
+            'class_type': self.class_type,
         }
 
     '''

@@ -116,27 +116,29 @@ def create_character(jwt):
     try:
         body = request.get_json()
         name = body.get('name', None)
-        class_type = body.get('class_type', None)
         age = body.get('age', None)
-        weight = body.get('weight', None)
         height = body.get('height', None)
+        weight = body.get('weight', None)
+        birthday = body.get('birthday', None)
+        astrological_sign = body.get('astrological_sign', None)
         bloodtype = body.get('bloodtype', None)
         three_sizes = body.get('three_sizes', None)
         handedness = body.get('handedness', None)
         hobbies = body.get('hobbies', None)
-        astrological_sign = body.get('astrological_sign', None)
+        class_type = body.get('class_type', None)
 
         character = Character(
             name=name,
-            class_type=class_type,
             age=age,
-            weight=weight,
             height=height,
+            weight=height,
+            birthday=birthday,
+            astrological_sign=astrological_sign,
             bloodtype=bloodtype,
             three_sizes=three_sizes,
             handedness=handedness,
             hobbies=hobbies,
-            astrological_sign=astrological_sign
+            class_type=class_type,
         )
         character.insert()
 
@@ -178,27 +180,29 @@ def update_character(jwt, character_id):
 
         body = request.get_json()
         name = body.get('name', None)
-        class_type = body.get('class_type', None)
         age = body.get('age', None)
-        weight = body.get('weight', None)
         height = body.get('height', None)
+        weight = body.get('weight', None)
+        birthday = body.get('birthday', None)
+        astrological_sign = body.get('astrological_sign', None)
         bloodtype = body.get('bloodtype', None)
         three_sizes = body.get('three_sizes', None)
         handedness = body.get('handedness', None)
         hobbies = body.get('hobbies', None)
-        astrological_sign = body.get('astrological_sign', None)
+        class_type = body.get('class_type', None)
 
         character = Character(
             name=name,
-            class_type=class_type,
             age=age,
-            weight=weight,
             height=height,
+            weight=height,
+            birthday=birthday,
+            astrological_sign=astrological_sign,
             bloodtype=bloodtype,
             three_sizes=three_sizes,
             handedness=handedness,
             hobbies=hobbies,
-            astrological_sign=astrological_sign
+            class_type=class_type,
         )
         character.update()
 
@@ -331,7 +335,6 @@ def create_card(jwt):
         character = body.get('character', None)
         skill = body.get('skill', None)
         rarity = body.get('rarity', None)
-        released = body.get('released', None)
         stat_1 = body.get('stat_1', None)
         stat_2 = body.get('stat_2', None)
         stat_3 = body.get('stat_3', None)
@@ -342,7 +345,6 @@ def create_card(jwt):
             character=character,
             skill=skill,
             rarity=rarity,
-            released=released,
             stat_1=stat_1,
             stat_2=stat_2,
             stat_3=stat_3,
@@ -391,7 +393,6 @@ def update_card(jwt, card_id):
         character = body.get('character', None)
         skill = body.get('skill', None)
         rarity = body.get('rarity', None)
-        released = body.get('released', None)
         stat_1 = body.get('stat_1', None)
         stat_2 = body.get('stat_2', None)
         stat_3 = body.get('stat_3', None)
@@ -402,7 +403,6 @@ def update_card(jwt, card_id):
             character=character,
             skill=skill,
             rarity=rarity,
-            released=released,
             stat_1=stat_1,
             stat_2=stat_2,
             stat_3=stat_3,
@@ -536,15 +536,11 @@ def create_skill(jwt):
     try:
         body = request.get_json()
         name = body.get('name', None)
-        type_bonus = body.get('type_bonus', None)
-        stat_bonus = body.get('stat_bonus', None)
-        multiplier = body.get('multiplier', None)
+        desc = body.get('desc', None)
 
         skill = Skill(
             name=name,
-            type_bonus=type_bonus,
-            stat_bonus=stat_bonus,
-            multiplier=multiplier
+            desc=desc
         )
         skill.insert()
 
@@ -586,15 +582,11 @@ def update_skill(jwt, skill_id):
 
         body = request.get_json()
         name = body.get('name', None)
-        type_bonus = body.get('type_bonus', None)
-        stat_bonus = body.get('stat_bonus', None)
-        multiplier = body.get('multiplier', None)
+        desc = body.get('desc', None)
 
         skill = Skill(
             name=name,
-            type_bonus=type_bonus,
-            stat_bonus=stat_bonus,
-            multiplier=multiplier
+            desc=desc
         )
         skill.update()
 

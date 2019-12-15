@@ -15,13 +15,9 @@ class Skill(db.Model):
     # Autoincrementing, unique primary key
     id = db.Column(db.Integer, primary_key=True)
     # Name
-    name = db.Column(String(120), nullable=False)
-    # Type Bonus
-    type_bonus = db.Column(String(120))
-    # Stat Bonus
-    stat_bonus = db.Column(String(120))
-    # Multiplier
-    multiplier = db.Column(db.Integer)
+    name = db.Column(String(80), nullable=False)
+    # Description
+    description = db.Column(String(160))
 
     '''
     info()
@@ -31,10 +27,8 @@ class Skill(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'type_bonus': self.type_bonus,
-            'stat_bonus': self.stat_bonus,
-            'multiplier': self.multiplier
-            }
+            'desc': self.desc
+        }
 
     '''
     insert()

@@ -15,15 +15,13 @@ class Card(db.Model):
     # Autoincrementing, unique primary key
     id = db.Column(db.Integer, primary_key=True)
     # Card Name
-    name = db.Column(String(120), nullable=False)
+    name = db.Column(String(80), nullable=False)
     # Card Character
     character = db.Column(db.Integer, db.ForeignKey('Character.id'))
     # Skill
     skill = db.Column(db.Integer, db.ForeignKey('Skill.id'))
     # Rarity
-    rarity = db.Column(String(120), nullable=False)
-    # Release Date
-    released = db.Column(db.DateTime, nullable=False)
+    rarity = db.Column(String(80), nullable=False)
     # Stat 1
     stat_1 = db.Column(db.Integer, nullable=False)
     # Stat 2
@@ -42,9 +40,8 @@ class Card(db.Model):
             'id': self.id,
             'name': self.name,
             'character': self.character.profile(),
-            'skill': self.skill,
+            'skill': self.skill.info(),
             'rarity': self.rarity,
-            'released': self.released,
             'stat_1': self.stat_1,
             'stat_2': self.stat_2,
             'stat_3': self.stat_3,
