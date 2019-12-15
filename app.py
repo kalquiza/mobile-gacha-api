@@ -21,6 +21,10 @@ def create_app(test_config=None):
 
     return app
 
+# ----------------------------------------------------------------------------#
+# Launch
+# ----------------------------------------------------------------------------#
+
 
 APP = create_app()
 
@@ -28,7 +32,12 @@ if __name__ == '__main__':
     APP.run(host='0.0.0.0', port=8080, debug=True)
 
 
-""" ROUTES """
+# ----------------------------------------------------------------------------#
+# Routes
+# ----------------------------------------------------------------------------#
+
+# Characters
+# ----------------------------------------------------------------------------#
 @app.route('/characters', methods=['GET'])
 @requires_auth('get:characters')
 def get_characters(jwt):
@@ -106,25 +115,15 @@ def create_character(jwt):
     """
     try:
         body = request.get_json()
-        # Name
         name = body.get('name', None)
-        # Class Type
         class_type = body.get('class_type', None)
-        # Age
         age = body.get('age', None)
-        # Weight in kg
         weight = body.get('weight', None)
-        # Height in cm
         height = body.get('height', None)
-        # Blood Type
         bloodtype = body.get('bloodtype', None)
-        # Three Sizes
         three_sizes = body.get('three_sizes', None)
-        # Handedness
         handedness = body.get('handedness', None)
-        # Hobbies
         hobbies = body.get('hobbies', None)
-        # Astrological Sign
         astrological_sign = body.get('astrological_sign', None)
 
         character = Character(
@@ -178,25 +177,15 @@ def update_character(jwt, character_id):
             abort(404)
 
         body = request.get_json()
-        # Name
         name = body.get('name', None)
-        # Class Type
         class_type = body.get('class_type', None)
-        # Age
         age = body.get('age', None)
-        # Weight in kg
         weight = body.get('weight', None)
-        # Height in cm
         height = body.get('height', None)
-        # Blood Type
         bloodtype = body.get('bloodtype', None)
-        # Three Sizes
         three_sizes = body.get('three_sizes', None)
-        # Handedness
         handedness = body.get('handedness', None)
-        # Hobbies
         hobbies = body.get('hobbies', None)
-        # Astrological Sign
         astrological_sign = body.get('astrological_sign', None)
 
         character = Character(
@@ -259,7 +248,217 @@ def delete_character(jwt, character_id):
         abort(422)
 
 
-""" Error Handling """
+# Cards
+# ----------------------------------------------------------------------------#
+@app.route('/cards', methods=['GET'])
+@requires_auth('get:cards')
+def get_cards(jwt):
+    """GET /cards
+
+    A public endpoint that retrieves the list of cards. Requires the
+    'get:cards' permission.
+
+    Args:
+        jwt: a json web token (string).
+
+    Returns:
+        A status code 200 and json {"success": True, "cards":
+        cards} where cards is the list of cards in the
+        cards.info() representation or appropriate status code
+        indicating reason for failure.
+    """
+    selection = Card.query.order_by(Card.id).all()
+    cards = [card.info() for card in selection]
+
+    response = jsonify({
+        'success': True,
+        'card': cards
+    })
+    response.status_code = 200
+    return response
+
+
+@app.route('/cards/<int:card_id>', methods=['GET'])
+@requires_auth('get:card')
+def get_card(jwt, card_id):
+    """GET /cards/<id>
+
+    A public endpoint that retrieves the card for the corresponding
+    row for <id>. Requires the 'get:card' permission.
+
+    Args:
+        jwt: a json web token (string).
+        card_id: where <card_id> is the existing model id (int).
+
+    Returns:
+        A status code 200 and json {"success": True, "card":
+        card} where card is the card in the
+        card.info() representation or appropriate status code
+        indicating reason for failure.
+    """
+    card = Card.query.filter(
+        Card.id == card_id).one_or_none()
+
+    response = jsonify({
+        'success': True,
+        'card': [card.info()]
+    })
+    response.status_code = 200
+    return response
+
+
+@app.route('/cards', methods=['POST'])
+@requires_auth('post:card')
+def create_card(jwt):
+    """POST /cards
+
+    An endpoint that creates a new row in the cards table. Requires
+    the 'post:card' permission.
+
+    Args:
+        jwt: a json web token (string).
+        card_id: where <card_id> is the existing model id (int).
+
+    Returns:
+        A status code 200 and json {"success": True, "card":
+        card} where card is an array containing only the newly
+        created card in the card.info() representation or
+        appropriate status code indicating reason for failure.
+    """
+    try:
+        body = request.get_json()
+        name = body.get('name', None)
+        character = body.get('character', None)
+        skill = body.get('skill', None)
+        rarity = body.get('rarity', None)
+        released = body.get('released', None)
+        stat_1 = body.get('stat_1', None)
+        stat_2 = body.get('stat_2', None)
+        stat_3 = body.get('stat_3', None)
+        stat_4 = body.get('stat_4', None)
+
+        card = Card(
+            name=name,
+            character=character,
+            skill=skill,
+            rarity=rarity,
+            released=released,
+            stat_1=stat_1,
+            stat_2=stat_2,
+            stat_3=stat_3,
+            stat_4=stat_4
+        )
+        card.insert()
+
+        response = jsonify({
+            'success': True,
+            'card': [card.info()]
+        })
+        response.status_code = 200
+        return response
+
+    except Exception as e:
+        abort(422)
+
+
+@app.route('/cards/<int:card_id>', methods=['PATCH'])
+@requires_auth('patch:card')
+def update_card(jwt, card_id):
+    """PATCH /cards/<id>
+
+    An endpoint that updates the corresponding row for <id>. Requires the
+    'patch:card' permission.
+
+    Args:
+        jwt: a json web token (string).
+        card_id: where <card_id> is the existing model id (int).
+
+    Returns:
+        A status code 200 and json {"success": True, "card":
+        card} where card is an array containing only the updated
+        card in the card.info() representation or appropriate
+        status code indicating reason for failure.
+    """
+    try:
+        card = Card.query.filter(
+            Card.id == card_id).one_or_none()
+
+        if card is None:
+            abort(404)
+
+        body = request.get_json()
+        name = body.get('name', None)
+        character = body.get('character', None)
+        skill = body.get('skill', None)
+        rarity = body.get('rarity', None)
+        released = body.get('released', None)
+        stat_1 = body.get('stat_1', None)
+        stat_2 = body.get('stat_2', None)
+        stat_3 = body.get('stat_3', None)
+        stat_4 = body.get('stat_4', None)
+
+        card = Card(
+            name=name,
+            character=character,
+            skill=skill,
+            rarity=rarity,
+            released=released,
+            stat_1=stat_1,
+            stat_2=stat_2,
+            stat_3=stat_3,
+            stat_4=stat_4
+        )
+        card.update()
+
+        return jsonify({
+            'success': True,
+            'card': [card.info()]
+        }), 200
+
+    except Exception as e:
+        abort(422)
+
+
+@app.route('/cards/<int:card_id>', methods=['DELETE'])
+@requires_auth('delete:card')
+def delete_card(jwt, card_id):
+    """
+        DELETE /cards/<id>:
+            An endpoint that deletes the corresponding row for <id>.
+            Requires the 'delete:card' permission.
+
+        Args:
+            jwt: a json web token (string).
+            card_id: where <card_id> is the existing model id
+            (int).
+
+        Returns:
+            A status code 200 and json {"success": True, "delete": id}
+            where id is the id of the deleted record or appropriate status
+            code indicating reason for failure.
+    """
+    try:
+        card = Card.query.filter(
+            Card.id == card).one_or_none()
+
+        if card is None:
+            abort(404)
+
+        id = card.id
+        card.delete()
+
+        return jsonify({
+            'success': True,
+            'delete': id
+        }), 200
+
+    except Exception as e:
+        abort(422)
+
+
+# ----------------------------------------------------------------------------#
+# Error Handling
+# ----------------------------------------------------------------------------#
 
 """
 Error handling for unprocessable entity
