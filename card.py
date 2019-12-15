@@ -13,7 +13,7 @@ Card
 class Card(db.Model):
     __tablename__ = 'Card'
     # Autoincrementing, unique primary key
-    id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     # Card Name
     name = db.Column(String(120), nullable=False)
     # Card Character

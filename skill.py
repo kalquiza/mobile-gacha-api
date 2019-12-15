@@ -13,7 +13,7 @@ Skill
 class Skill(db.Model):
     __tablename__ = 'Skill'
     # Autoincrementing, unique primary key
-    id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     # Name
     name = db.Column(String(120), nullable=False)
     # Type Bonus
