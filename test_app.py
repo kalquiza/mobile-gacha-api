@@ -8,10 +8,9 @@ from models from database.database import setup_db
 from database.character import Character
 from database.card import Card
 from database.skill import Skill
-import setup_db, Question, Category
 
 
-class CachaTestCase(unittest.TestCase):
+class GachaTestCase(unittest.TestCase):
     """This class represents the gacha test case"""
 
     def setUp(self):
@@ -33,6 +32,15 @@ class CachaTestCase(unittest.TestCase):
         """Executed after each test"""
         pass
 
+    """ Test endpoint GET /categories"""
+    def test_get_characters(self):
+        res = self.client().get('/characters')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['total_categories'])
+        self.assertTrue(len(data['categories']))
 
 
 # Make the tests conveniently executable
