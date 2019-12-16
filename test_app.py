@@ -3,8 +3,8 @@ import unittest
 import json
 from flask_sqlalchemy import SQLAlchemy
 
-from flaskr import create_app
-from models from database.database import setup_db
+from app import create_app
+from database.database import setup_db
 from database.character import Character
 from database.card import Card
 from database.skill import Skill
