@@ -304,6 +304,9 @@ ALTER TABLE ONLY public."Card"
 ALTER TABLE ONLY public."Card"
     ADD CONSTRAINT "Card_skill_fkey" FOREIGN KEY (skill) REFERENCES public."Skill"(id);
 
+SELECT setval('public."Character_id_seq"', (SELECT max(id) FROM public."Character"));
+SELECT setval('public."Card_id_seq"', (SELECT max(id) FROM public."Card"));
+SELECT setval('public."Skill_id_seq"', (SELECT max(id) FROM public."Skill"));
 
 --
 -- PostgreSQL database dump complete
