@@ -235,22 +235,21 @@ def delete_character(jwt, character_id):
     """
     try:
         character = Character.query.filter(
-            Character.id == character).one_or_none()
+            Character.id == character_id).one_or_none()
 
         if character is None:
             abort(404)
 
-        id = character.id
+        char_id = character.id
         character.delete()
 
         return jsonify({
             'success': True,
-            'delete': id
+            'delete': char_id
         }), 200
 
     except Exception as e:
         abort(422)
-
 
 # Cards
 # ----------------------------------------------------------------------------#
@@ -439,17 +438,17 @@ def delete_card(jwt, card_id):
     """
     try:
         card = Card.query.filter(
-            Card.id == card).one_or_none()
+            Card.id == card_id).one_or_none()
 
         if card is None:
             abort(404)
 
-        id = card.id
+        card_id = card.id
         card.delete()
 
         return jsonify({
             'success': True,
-            'delete': id
+            'delete': card_id
         }), 200
 
     except Exception as e:
@@ -619,17 +618,17 @@ def delete_skill(jwt, skill_id):
     """
     try:
         skill = Skill.query.filter(
-            Skill.id == skill).one_or_none()
+            Skill.id == skill_id).one_or_none()
 
         if skill is None:
             abort(404)
 
-        id = skill.id
+        skill_id = skill.id
         skill.delete()
 
         return jsonify({
             'success': True,
-            'delete': id
+            'delete': skill_id
         }), 200
 
     except Exception as e:
