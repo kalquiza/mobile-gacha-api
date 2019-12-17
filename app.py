@@ -55,15 +55,18 @@ def get_characters(jwt):
         characters.profile() representation or appropriate status code
         indicating reason for failure.
     """
-    selection = Character.query.order_by(Character.id).all()
-    characters = [character.profile() for character in selection]
+    try:
+        selection = Character.query.order_by(Character.id).all()
+        characters = [character.profile() for character in selection]
 
-    response = jsonify({
-        'success': True,
-        'character': characters
-    })
-    response.status_code = 200
-    return response
+        response = jsonify({
+            'success': True,
+            'character': characters
+        })
+        response.status_code = 200
+        return response
+    except Exception as e:
+        abort(404)
 
 
 @app.route('/characters/<int:character_id>', methods=['GET'])
@@ -84,15 +87,18 @@ def get_character(jwt, character_id):
         character.profile() representation or appropriate status code
         indicating reason for failure.
     """
-    character = Character.query.filter(
-        Character.id == character_id).one_or_none()
+    try:
+        character = Character.query.filter(
+            Character.id == character_id).one_or_none()
 
-    response = jsonify({
-        'success': True,
-        'character': [character.profile()]
-    })
-    response.status_code = 200
-    return response
+        response = jsonify({
+            'success': True,
+            'character': [character.profile()]
+        })
+        response.status_code = 200
+        return response
+    except Exception as e:
+        abort(404)
 
 
 @app.route('/characters', methods=['POST'])
@@ -270,15 +276,18 @@ def get_cards(jwt):
         cards.info() representation or appropriate status code
         indicating reason for failure.
     """
-    selection = Card.query.order_by(Card.id).all()
-    cards = [card.info() for card in selection]
+    try:
+        selection = Card.query.order_by(Card.id).all()
+        cards = [card.info() for card in selection]
 
-    response = jsonify({
-        'success': True,
-        'card': cards
-    })
-    response.status_code = 200
-    return response
+        response = jsonify({
+            'success': True,
+            'card': cards
+        })
+        response.status_code = 200
+        return response
+    except Exception as e:
+        abort(404)
 
 
 @app.route('/cards/<int:card_id>', methods=['GET'])
@@ -299,15 +308,18 @@ def get_card(jwt, card_id):
         card.info() representation or appropriate status code
         indicating reason for failure.
     """
-    card = Card.query.filter(
-        Card.id == card_id).one_or_none()
+    try:
+        card = Card.query.filter(
+            Card.id == card_id).one_or_none()
 
-    response = jsonify({
-        'success': True,
-        'card': [card.info()]
-    })
-    response.status_code = 200
-    return response
+        response = jsonify({
+            'success': True,
+            'card': [card.info()]
+        })
+        response.status_code = 200
+        return response
+    except Exception as e:
+        abort(404)
 
 
 @app.route('/cards', methods=['POST'])
@@ -474,15 +486,18 @@ def get_skills(jwt):
         skills.info() representation or appropriate status code
         indicating reason for failure.
     """
-    selection = Skill.query.order_by(Skill.id).all()
-    skills = [skill.info() for skill in selection]
+    try:
+        selection = Skill.query.order_by(Skill.id).all()
+        skills = [skill.info() for skill in selection]
 
-    response = jsonify({
-        'success': True,
-        'skill': skills
-    })
-    response.status_code = 200
-    return response
+        response = jsonify({
+            'success': True,
+            'skill': skills
+        })
+        response.status_code = 200
+        return response
+    except Exception as e:
+        abort(404)
 
 
 @app.route('/skills/<int:skill_id>', methods=['GET'])
@@ -503,15 +518,18 @@ def get_skill(jwt, skill_id):
         skill.info() representation or appropriate status code
         indicating reason for failure.
     """
-    skill = Skill.query.filter(
-        Skill.id == skill_id).one_or_none()
+    try:
+        skill = Skill.query.filter(
+            Skill.id == skill_id).one_or_none()
 
-    response = jsonify({
-        'success': True,
-        'skill': [skill.info()]
-    })
-    response.status_code = 200
-    return response
+        response = jsonify({
+            'success': True,
+            'skill': [skill.info()]
+        })
+        response.status_code = 200
+        return response
+    except Exception as e:
+        abort(404)
 
 
 @app.route('/skills', methods=['POST'])
