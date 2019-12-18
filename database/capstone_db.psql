@@ -21,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: Card; Type: TABLE; Schema: public; Owner: kalquiza
+-- Name: Card; Type: TABLE; Schema: public; 
 --
 
 CREATE TABLE public."Card" (
@@ -36,11 +36,8 @@ CREATE TABLE public."Card" (
     stat_4 integer NOT NULL
 );
 
-
-ALTER TABLE public."Card" OWNER TO kalquiza;
-
 --
--- Name: Card_id_seq; Type: SEQUENCE; Schema: public; Owner: kalquiza
+-- Name: Card_id_seq; Type: SEQUENCE; Schema: public; 
 --
 
 CREATE SEQUENCE public."Card_id_seq"
@@ -51,18 +48,15 @@ CREATE SEQUENCE public."Card_id_seq"
     NO MAXVALUE
     CACHE 1;
 
-
-ALTER TABLE public."Card_id_seq" OWNER TO kalquiza;
-
 --
--- Name: Card_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: kalquiza
+-- Name: Card_id_seq; Type: SEQUENCE OWNED BY; Schema: public; 
 --
 
 ALTER SEQUENCE public."Card_id_seq" OWNED BY public."Card".id;
 
 
 --
--- Name: Character; Type: TABLE; Schema: public; Owner: kalquiza
+-- Name: Character; Type: TABLE; Schema: public; 
 --
 
 CREATE TABLE public."Character" (
@@ -80,11 +74,8 @@ CREATE TABLE public."Character" (
     class_type character varying(80)
 );
 
-
-ALTER TABLE public."Character" OWNER TO kalquiza;
-
 --
--- Name: Character_id_seq; Type: SEQUENCE; Schema: public; Owner: kalquiza
+-- Name: Character_id_seq; Type: SEQUENCE; Schema: public; 
 --
 
 CREATE SEQUENCE public."Character_id_seq"
@@ -95,18 +86,15 @@ CREATE SEQUENCE public."Character_id_seq"
     NO MAXVALUE
     CACHE 1;
 
-
-ALTER TABLE public."Character_id_seq" OWNER TO kalquiza;
-
 --
--- Name: Character_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: kalquiza
+-- Name: Character_id_seq; Type: SEQUENCE OWNED BY; Schema: public; 
 --
 
 ALTER SEQUENCE public."Character_id_seq" OWNED BY public."Character".id;
 
 
 --
--- Name: Skill; Type: TABLE; Schema: public; Owner: kalquiza
+-- Name: Skill; Type: TABLE; Schema: public; 
 --
 
 CREATE TABLE public."Skill" (
@@ -115,11 +103,8 @@ CREATE TABLE public."Skill" (
     description character varying(160)
 );
 
-
-ALTER TABLE public."Skill" OWNER TO kalquiza;
-
 --
--- Name: Skill_id_seq; Type: SEQUENCE; Schema: public; Owner: kalquiza
+-- Name: Skill_id_seq; Type: SEQUENCE; Schema: public; 
 --
 
 CREATE SEQUENCE public."Skill_id_seq"
@@ -130,50 +115,44 @@ CREATE SEQUENCE public."Skill_id_seq"
     NO MAXVALUE
     CACHE 1;
 
-
-ALTER TABLE public."Skill_id_seq" OWNER TO kalquiza;
-
 --
--- Name: Skill_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: kalquiza
+-- Name: Skill_id_seq; Type: SEQUENCE OWNED BY; Schema: public; 
 --
 
 ALTER SEQUENCE public."Skill_id_seq" OWNED BY public."Skill".id;
 
 
 --
--- Name: alembic_version; Type: TABLE; Schema: public; Owner: kalquiza
+-- Name: alembic_version; Type: TABLE; Schema: public; 
 --
 
 CREATE TABLE public.alembic_version (
     version_num character varying(32) NOT NULL
 );
 
-
-ALTER TABLE public.alembic_version OWNER TO kalquiza;
-
 --
--- Name: Card id; Type: DEFAULT; Schema: public; Owner: kalquiza
+-- Name: Card id; Type: DEFAULT; Schema: public; 
 --
 
 ALTER TABLE ONLY public."Card" ALTER COLUMN id SET DEFAULT nextval('public."Card_id_seq"'::regclass);
 
 
 --
--- Name: Character id; Type: DEFAULT; Schema: public; Owner: kalquiza
+-- Name: Character id; Type: DEFAULT; Schema: public; 
 --
 
 ALTER TABLE ONLY public."Character" ALTER COLUMN id SET DEFAULT nextval('public."Character_id_seq"'::regclass);
 
 
 --
--- Name: Skill id; Type: DEFAULT; Schema: public; Owner: kalquiza
+-- Name: Skill id; Type: DEFAULT; Schema: public; 
 --
 
 ALTER TABLE ONLY public."Skill" ALTER COLUMN id SET DEFAULT nextval('public."Skill_id_seq"'::regclass);
 
 
 --
--- Data for Name: Card; Type: TABLE DATA; Schema: public; Owner: kalquiza
+-- Data for Name: Card; Type: TABLE DATA; Schema: public; 
 --
 
 COPY public."Card" (id, name, "character", skill, rarity, stat_1, stat_2, stat_3, stat_4) FROM stdin;
@@ -189,7 +168,7 @@ COPY public."Card" (id, name, "character", skill, rarity, stat_1, stat_2, stat_3
 
 
 --
--- Data for Name: Character; Type: TABLE DATA; Schema: public; Owner: kalquiza
+-- Data for Name: Character; Type: TABLE DATA; Schema: public; 
 --
 
 COPY public."Character" (id, name, age, height, weight, birthday, astrological_sign, bloodtype, three_sizes, handedness, hobbies, class_type) FROM stdin;
@@ -204,7 +183,7 @@ COPY public."Character" (id, name, age, height, weight, birthday, astrological_s
 
 
 --
--- Data for Name: Skill; Type: TABLE DATA; Schema: public; Owner: kalquiza
+-- Data for Name: Skill; Type: TABLE DATA; Schema: public; 
 --
 
 COPY public."Skill" (id, name, description) FROM stdin;
@@ -220,7 +199,7 @@ COPY public."Skill" (id, name, description) FROM stdin;
 
 
 --
--- Data for Name: alembic_version; Type: TABLE DATA; Schema: public; Owner: kalquiza
+-- Data for Name: alembic_version; Type: TABLE DATA; Schema: public; 
 --
 
 COPY public.alembic_version (version_num) FROM stdin;
@@ -229,28 +208,28 @@ COPY public.alembic_version (version_num) FROM stdin;
 
 
 --
--- Name: Card_id_seq; Type: SEQUENCE SET; Schema: public; Owner: kalquiza
+-- Name: Card_id_seq; Type: SEQUENCE SET; Schema: public; 
 --
 
 SELECT pg_catalog.setval('public."Card_id_seq"', 1, false);
 
 
 --
--- Name: Character_id_seq; Type: SEQUENCE SET; Schema: public; Owner: kalquiza
+-- Name: Character_id_seq; Type: SEQUENCE SET; Schema: public; 
 --
 
 SELECT pg_catalog.setval('public."Character_id_seq"', 1, false);
 
 
 --
--- Name: Skill_id_seq; Type: SEQUENCE SET; Schema: public; Owner: kalquiza
+-- Name: Skill_id_seq; Type: SEQUENCE SET; Schema: public; 
 --
 
 SELECT pg_catalog.setval('public."Skill_id_seq"', 1, false);
 
 
 --
--- Name: Card Card_pkey; Type: CONSTRAINT; Schema: public; Owner: kalquiza
+-- Name: Card Card_pkey; Type: CONSTRAINT; Schema: public; 
 --
 
 ALTER TABLE ONLY public."Card"
@@ -258,7 +237,7 @@ ALTER TABLE ONLY public."Card"
 
 
 --
--- Name: Character Character_name_key; Type: CONSTRAINT; Schema: public; Owner: kalquiza
+-- Name: Character Character_name_key; Type: CONSTRAINT; Schema: public; 
 --
 
 ALTER TABLE ONLY public."Character"
@@ -266,7 +245,7 @@ ALTER TABLE ONLY public."Character"
 
 
 --
--- Name: Character Character_pkey; Type: CONSTRAINT; Schema: public; Owner: kalquiza
+-- Name: Character Character_pkey; Type: CONSTRAINT; Schema: public; 
 --
 
 ALTER TABLE ONLY public."Character"
@@ -274,7 +253,7 @@ ALTER TABLE ONLY public."Character"
 
 
 --
--- Name: Skill Skill_pkey; Type: CONSTRAINT; Schema: public; Owner: kalquiza
+-- Name: Skill Skill_pkey; Type: CONSTRAINT; Schema: public; 
 --
 
 ALTER TABLE ONLY public."Skill"
@@ -282,7 +261,7 @@ ALTER TABLE ONLY public."Skill"
 
 
 --
--- Name: alembic_version alembic_version_pkc; Type: CONSTRAINT; Schema: public; Owner: kalquiza
+-- Name: alembic_version alembic_version_pkc; Type: CONSTRAINT; Schema: public; 
 --
 
 ALTER TABLE ONLY public.alembic_version
@@ -290,7 +269,7 @@ ALTER TABLE ONLY public.alembic_version
 
 
 --
--- Name: Card Card_character_fkey; Type: FK CONSTRAINT; Schema: public; Owner: kalquiza
+-- Name: Card Card_character_fkey; Type: FK CONSTRAINT; Schema: public; 
 --
 
 ALTER TABLE ONLY public."Card"
@@ -298,7 +277,7 @@ ALTER TABLE ONLY public."Card"
 
 
 --
--- Name: Card Card_skill_fkey; Type: FK CONSTRAINT; Schema: public; Owner: kalquiza
+-- Name: Card Card_skill_fkey; Type: FK CONSTRAINT; Schema: public; 
 --
 
 ALTER TABLE ONLY public."Card"
