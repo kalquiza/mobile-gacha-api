@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 import json
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
-database_path = 'postgres:///capstone_db'
+database_path = os.environ.get('DATABASE_URL')
 
 db = SQLAlchemy()
 
