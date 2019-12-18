@@ -1,1 +1,1 @@
-web: flask db upgrade; gunicorn fsnd-capstone:app
+web: flask db upgrade; gunicorn app:app
