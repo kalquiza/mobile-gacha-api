@@ -27,7 +27,7 @@ class GachaTestCase(unittest.TestCase):
         """Define test variables and initialize app."""
         self.app = create_app()
         self.client = self.app.test_client
-        self.database_name = "gacha_test"
+        self.database_name = "capstone_db_test"
         self.database_path = "postgres://{}/{}".format('', self.database_name)
         setup_db(self.app, self.database_path)
 
