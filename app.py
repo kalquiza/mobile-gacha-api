@@ -197,19 +197,28 @@ def update_character(jwt, character_id):
         hobbies = body.get('hobbies', None)
         class_type = body.get('class_type', None)
 
-        character = Character(
-            name=name,
-            age=age,
-            height=height,
-            weight=weight,
-            birthday=birthday,
-            astrological_sign=astrological_sign,
-            bloodtype=bloodtype,
-            three_sizes=three_sizes,
-            handedness=handedness,
-            hobbies=hobbies,
-            class_type=class_type,
-        )
+        if name is not None:
+            character.name = name
+        if age is not None:
+            character.age = age
+        if height is not None:
+            character.height = height
+        if weight is not None:
+            character.weight = weight
+        if birthday is not None:
+            character.birthday = birthday
+        if astrological_sign is not None:
+            character.astrological_sign = astrological_sign
+        if bloodtype is not None:
+            character.bloodtype = bloodtype
+        if three_sizes is not None:
+            character.three_sizes = three_sizes
+        if handedness is not None:
+            character.handedness = handedness
+        if hobbies is not None:
+            character.hobbies = hobbies
+        if height is not None:
+            character.class_type = class_type
         character.update()
 
         return jsonify({
@@ -409,16 +418,22 @@ def update_card(jwt, card_id):
         stat_3 = body.get('stat_3', None)
         stat_4 = body.get('stat_4', None)
 
-        card = Card(
-            name=name,
-            character=character,
-            skill=skill,
-            rarity=rarity,
-            stat_1=stat_1,
-            stat_2=stat_2,
-            stat_3=stat_3,
-            stat_4=stat_4
-        )
+        if name is not None:
+            card.name = name
+        if character is not None:
+            card.character = character
+        if skill is not None:
+            card.skill = skill
+        if rarity is not None:
+            card.rarity = rarity
+        if stat_1 is not None:
+            card.stat_1 = stat_1
+        if stat_2 is not None:
+            card.stat_2 = stat_2
+        if stat_3 is not None:
+            card.stat_3 = stat_3
+        if stat_4 is not None:
+            card.stat_4 = stat_4
         card.update()
 
         return jsonify({
@@ -553,11 +568,11 @@ def create_skill(jwt):
     try:
         body = request.get_json()
         name = body.get('name', None)
-        desc = body.get('desc', None)
+        description = body.get('description', None)
 
         skill = Skill(
             name=name,
-            desc=desc
+            description=description
         )
         skill.insert()
 
@@ -599,12 +614,12 @@ def update_skill(jwt, skill_id):
 
         body = request.get_json()
         name = body.get('name', None)
-        desc = body.get('desc', None)
+        description = body.get('description', None)
 
-        skill = Skill(
-            name=name,
-            desc=desc
-        )
+        if name is not None:
+            skill.name = name
+        if description is not None:
+            skill.description = description
         skill.update()
 
         return jsonify({
