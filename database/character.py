@@ -1,6 +1,7 @@
 import os
 from sqlalchemy import Column, String, Integer
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
 import json
 from .database import db
 
@@ -36,6 +37,8 @@ class Character(db.Model):
     hobbies = db.Column(db.String(80))
     # Class Type
     class_type = db.Column(String(80))
+    # Define delete cascade on card
+    cards = relationship("Card", cascade="delete")
 
     '''
     profile()

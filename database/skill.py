@@ -1,6 +1,7 @@
 import os
 from sqlalchemy import Column, String, Integer
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
 import json
 from .database import db
 
@@ -18,6 +19,8 @@ class Skill(db.Model):
     name = db.Column(String(80), nullable=False)
     # Description
     description = db.Column(String(160))
+    # Define delete cascade on card
+    cards = relationship("Card", cascade="delete")
 
     '''
     info()
@@ -27,7 +30,7 @@ class Skill(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'desc': self.desc
+            'description': self.description
         }
 
     '''

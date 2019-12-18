@@ -39,8 +39,8 @@ class Card(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'character': self.character.profile(),
-            'skill': self.skill.info(),
+            'character': self.character,
+            'skill': self.skill,
             'rarity': self.rarity,
             'stat_1': self.stat_1,
             'stat_2': self.stat_2,
