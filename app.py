@@ -3,7 +3,6 @@ from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
-from flask_restful import Resource, Api
 from auth.auth import AuthError, requires_auth
 from database.database import db_drop_and_create_all, setup_db
 from database.character import Character
