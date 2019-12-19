@@ -16,8 +16,8 @@ from database.skill import Skill
 """ Provide recent tokens for member and contributor roles.
     Tests will fail if token is invalid or expired.
 """
-member_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik1UTTJSREl3UkRNNFJrVTBRVFEwUmpjMk1UazFOek5FUkVVNU1rTkJSVFJFUXpFNE1UWkJPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi0yczFrNmM4NC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWRjOTA2MDIyYjg4MDQwZTY2Mzc1ZWU3IiwiYXVkIjoiaWRvbCIsImlhdCI6MTU3NjYyNDMzNCwiZXhwIjoxNTc2NzEwNzM0LCJhenAiOiJuZVB0YU5SYWhkZ0t3eDVzZjVxaUZIWnl2Z3FXWkt3NyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmNhcmQiLCJnZXQ6Y2FyZHMiLCJnZXQ6Y2hhcmFjdGVyIiwiZ2V0OmNoYXJhY3RlcnMiLCJnZXQ6c2tpbGwiLCJnZXQ6c2tpbGxzIl19.hnXDkavHpPn1_RF-J-osmB2tTtGCdrZZMwRTJR2DIWufAadqaYcnllSszRwQ7R2KH3JmkSvPjw4fAu7gceHFS3AKpuovQKqo0awiphSY3_OiWist30QNXkQAgLxLgJ8vIKz_rn8gGcbBMend1loU9w0me3RWMLIOxvj9W8RtTw3_SydbrLrxW1J3NWtN4RmXAtk9U8-OhkDS-wrSx_QavNzRNPpUAVzTkGvvb5FcpopuhsySflcs85NTPbUdR3LlJOr1B0U3_wl92MA8vrZESuaKWgfhEa253nvuD76IEmDRQNc5p9m9iyOSzeHjRED1g3-zUABooTMJimJZgwL2vw"
-contributor_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik1UTTJSREl3UkRNNFJrVTBRVFEwUmpjMk1UazFOek5FUkVVNU1rTkJSVFJFUXpFNE1UWkJPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi0yczFrNmM4NC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWRjOTA2NDE3MGUzMGYwZTYyNjYwY2I0IiwiYXVkIjoiaWRvbCIsImlhdCI6MTU3NjYyNDI3NiwiZXhwIjoxNTc2NzEwNjc2LCJhenAiOiJuZVB0YU5SYWhkZ0t3eDVzZjVxaUZIWnl2Z3FXWkt3NyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmNhcmQiLCJkZWxldGU6Y2hhcmFjdGVyIiwiZGVsZXRlOnNraWxsIiwiZ2V0OmNhcmQiLCJnZXQ6Y2FyZHMiLCJnZXQ6Y2hhcmFjdGVyIiwiZ2V0OmNoYXJhY3RlcnMiLCJnZXQ6c2tpbGwiLCJnZXQ6c2tpbGxzIiwicGF0Y2g6Y2FyZCIsInBhdGNoOmNoYXJhY3RlciIsInBhdGNoOnNraWxsIiwicG9zdDpjYXJkIiwicG9zdDpjaGFyYWN0ZXIiLCJwb3N0OnNraWxsIl19.a_EY2uJ-prA3IA19o_XHTpfKJUSWvL27xqr-s7Gb-0kscAZDBeg8MFq-bqPPFjw7mwX9OGntQHVuffJMVNAcPRJFCz4VhF9B_xzHk8ySsDZCMmY6M-xO8OGffekcnR5ef3Tim3ZkYgWvWXZySXxJEnnAqmrrLjtTZ-oaVSIRQV6hhwrN4_WDmSTuud3VRTPfOyPrPHvZXsh0GxIuXBC4dmciwJ0JAF8Dhh0fm48YO7Ef82NIqEkHDd6GBe1AtKIlURqGweBOwchRDymFVmXm_SopYtZoQfh4JuHJ6wJeJ0IhnMFcHcb5BZC6nf9iDW18Q88ZmDLgwd3gcp0qotBxlg"
+member_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik1UTTJSREl3UkRNNFJrVTBRVFEwUmpjMk1UazFOek5FUkVVNU1rTkJSVFJFUXpFNE1UWkJPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi0yczFrNmM4NC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWRjOTA2MDIyYjg4MDQwZTY2Mzc1ZWU3IiwiYXVkIjoiaWRvbCIsImlhdCI6MTU3NjczMDM0NCwiZXhwIjoxNTc2ODE2NzQ0LCJhenAiOiJuZVB0YU5SYWhkZ0t3eDVzZjVxaUZIWnl2Z3FXWkt3NyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmNhcmQiLCJnZXQ6Y2FyZHMiLCJnZXQ6Y2hhcmFjdGVyIiwiZ2V0OmNoYXJhY3RlcnMiLCJnZXQ6c2tpbGwiLCJnZXQ6c2tpbGxzIl19.VV0Gb28MUwVmL54xKdqXMiTUMtxGbDF_8UBy7NyasD0ympNUM5PTEnkpWcdxk033sMcrOUjxCwzPazvPw0aAUG5VLJISDASzknufdakfeRrbdP4IyvRP0SZ6y1iAvUbsj-K4sF6xOgtxYNJHadvR5-bEebAH0g18m7Y5GrvcU85cQww6dzXS16kYaPSc7L8Kt4KGzwv0Cw7Ols13T6XH_TnbKXgkMA5BYyX_2ZbxwG5SpkbxGrEAbJCN0jxokPMJqZ4YCXk6LauRyMY1cGE5I-ni2y9KXZSGMu4hDH_3LVFLUeRisQzXNC1I6T2FxeqRFPt4KhvYot3Sr9RkePmmDw"
+contributor_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik1UTTJSREl3UkRNNFJrVTBRVFEwUmpjMk1UazFOek5FUkVVNU1rTkJSVFJFUXpFNE1UWkJPUSJ9.eyJpc3MiOiJodHRwczovL2Rldi0yczFrNmM4NC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWRjOTA2NDE3MGUzMGYwZTYyNjYwY2I0IiwiYXVkIjoiaWRvbCIsImlhdCI6MTU3NjczMDI4NiwiZXhwIjoxNTc2ODE2Njg2LCJhenAiOiJuZVB0YU5SYWhkZ0t3eDVzZjVxaUZIWnl2Z3FXWkt3NyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmNhcmQiLCJkZWxldGU6Y2hhcmFjdGVyIiwiZGVsZXRlOnNraWxsIiwiZ2V0OmNhcmQiLCJnZXQ6Y2FyZHMiLCJnZXQ6Y2hhcmFjdGVyIiwiZ2V0OmNoYXJhY3RlcnMiLCJnZXQ6c2tpbGwiLCJnZXQ6c2tpbGxzIiwicGF0Y2g6Y2FyZCIsInBhdGNoOmNoYXJhY3RlciIsInBhdGNoOnNraWxsIiwicG9zdDpjYXJkIiwicG9zdDpjaGFyYWN0ZXIiLCJwb3N0OnNraWxsIl19.kFic7Q-r4p-RqieiyTA0chtfDFnA43Dv0gH5B7MxxZvl5R6b9L9K8iC4mDkeGGWw76bIAKKi3BHFgizNmBRVQ7BTslBuShTzPx26LW75SE4AyuwjqsRvBFSjne42wGM4XEiuxaFsm5P1XOJNvxO7AqNDLvpdF-15hhHWoZmoRK4ls_a1pCcag4HyOiMdt13q7zJzBBUZqEaBooMnWEn1Iw2WEogVVS-mFiaen1QB2hvjlQWKqGS2S8pbP9ayzyMhbOV6XLQPh2X230b7AgHyHAoNLOmgnb2-WmbP17bttQjjh7joRGfvFCw9DTvj4_3M4PQyWx-vY-ZkhKT1zkOdpQ"
 
 
 class GachaTestCase(unittest.TestCase):
@@ -475,7 +475,8 @@ class GachaTestCase(unittest.TestCase):
             headers={'Authorization': "Bearer {0}".format(member_token)},
             json={
                 "name": "Violent shout",
-                "description": "For the next 5 seconds, score of all notes boosted by +100.0%",
+                "description": "For the next 5 seconds, score of all notes \
+                boosted by +100.0%",
             }
         )
         data = json.loads(res.data)
@@ -489,7 +490,8 @@ class GachaTestCase(unittest.TestCase):
             '/skills/{}'.format(skill_id),
             headers={'Authorization': "Bearer {0}".format(member_token)},
             json={
-                "description": "390 Life Recovery and Score increased by 70% for 8 seconds",
+                "description": "390 Life Recovery and Score increased by 70% \
+                for 8 seconds",
             }
         )
         data = json.loads(res.data)
@@ -539,7 +541,8 @@ class GachaTestCase(unittest.TestCase):
             headers={'Authorization': "Bearer {0}".format(contributor_token)},
             json={
                 "name": "Violent shout",
-                "description": "For the next 5 seconds, score of all notes boosted by +100.0%",
+                "description": "For the next 5 seconds, score of all notes \
+                boosted by +100.0%",
             }
         )
         data = json.loads(res.data)
@@ -553,7 +556,8 @@ class GachaTestCase(unittest.TestCase):
             '/skills/{}'.format(skill_id),
             headers={'Authorization': "Bearer {0}".format(contributor_token)},
             json={
-                "description": "390 Life Recovery and Score increased by 70% for 8 seconds",
+                "description": "390 Life Recovery and Score increased by 70% \
+                for 8 seconds",
             }
         )
         data = json.loads(res.data)
