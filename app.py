@@ -42,7 +42,7 @@ if __name__ == '__main__':
 def get_characters(jwt):
     """GET /characters
 
-    A public endpoint that retrieves the list of characters. Requires the
+    An endpoint that retrieves the list of characters. Requires the
     'get:characters' permission.
 
     Args:
@@ -73,7 +73,7 @@ def get_characters(jwt):
 def get_character(jwt, character_id):
     """GET /characters/<id>
 
-    A public endpoint that retrieves the character for the corresponding
+    An endpoint that retrieves the character for the corresponding
     row for <id>. Requires the 'get:character' permission.
 
     Args:
@@ -272,7 +272,7 @@ def delete_character(jwt, character_id):
 def get_cards(jwt):
     """GET /cards
 
-    A public endpoint that retrieves the list of cards. Requires the
+    An endpoint that retrieves the list of cards. Requires the
     'get:cards' permission.
 
     Args:
@@ -303,7 +303,7 @@ def get_cards(jwt):
 def get_card(jwt, card_id):
     """GET /cards/<id>
 
-    A public endpoint that retrieves the card for the corresponding
+    An endpoint that retrieves the card for the corresponding
     row for <id>. Requires the 'get:card' permission.
 
     Args:
@@ -488,7 +488,7 @@ def delete_card(jwt, card_id):
 def get_skills(jwt):
     """GET /skills
 
-    A public endpoint that retrieves the list of skills. Requires the
+    An endpoint that retrieves the list of skills. Requires the
     'get:skills' permission.
 
     Args:
@@ -519,7 +519,7 @@ def get_skills(jwt):
 def get_skill(jwt, skill_id):
     """GET /skills/<id>
 
-    A public endpoint that retrieves the skill for the corresponding
+    An endpoint that retrieves the skill for the corresponding
     row for <id>. Requires the 'get:skill' permission.
 
     Args:
