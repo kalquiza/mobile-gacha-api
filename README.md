@@ -53,6 +53,11 @@ Set the database path in the file `./database/database.py` to the postgres datab
 ```py
 database_path = "postgres://{}/{}".format('localhost:5432', database_name)
 ```
+Apply the latest migration to the database by running:
+
+```bash
+flask db upgrade
+```
 
 To restore the database with the example capstone_db.psql file provided run:
 
@@ -114,7 +119,15 @@ To run the server, execute:
 flask run --reload
 ```
 
-The `--reload` flag will detect file changes and restart the server automatically.
+## Testing
+To run the tests, run
+```
+dropdb capstone_db_test
+createdb capstone_db_test
+psql database_name < database/gacha.psql
+python test_app.py
+```
+>_tip_: Remember to update member_token and contributor_token in test_app.py with valid authentication tokens, otherwise the test suite will fail.
 
 ## Live API via Heroku
 
